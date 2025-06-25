@@ -16,9 +16,16 @@ public class App {
 
         LogicaClasificacion logica = new LogicaClasificacion();
         // Probar invertirCadena
-        String texto = "Hola Mundo";
+        String texto = "LOKENECESITAS";
         String invertido = logica.invertirCadena(texto);
         System.out.println("invertirCadena(\"" + texto + "\"): " + invertido);
+
+
+        int numeros = 36401202;
+        int invertidoNum = logica.invertirNumeros(numeros);
+        System.out.println("invertirCadena(\"" + numeros + "\"): " + invertidoNum);
+
+
 
         // Probar validarSimbolos
         String expresion = "{[()]}";
