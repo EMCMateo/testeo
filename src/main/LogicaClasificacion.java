@@ -43,13 +43,14 @@ public class LogicaClasificacion {
             if (texto == null){
                 return "";
             }
-
-            for (char c : texto.toCharArray()){
+            pila.clear();
+            for(char c : texto.toCharArray()){
                 pila.push(String.valueOf(c));
             }
             StringBuilder cadenaInv = new StringBuilder();
-            while(pila.isEmpty() == false){
+            while (pila.isEmpty() == false) {
                 cadenaInv.append(pila.pop());
+                           
             }
             return cadenaInv.toString();
         }
@@ -113,26 +114,26 @@ public class LogicaClasificacion {
 
         public boolean validarSimbolos(String expresion) {
             Stack<Character> pila = new Stack<>();
-            if (expresion == null){
+            if(expresion == null){
                 return false;
             }
             for (char c : expresion.toCharArray()){
-                if (c == '{' || c == '(' || c == '[' ){
+                if (c == '{' || c == '(' || c == '['){
                     pila.push(c);
-                }else if (c == '}' || c == ')' || c == ']' ) {
-                    if (pila.isEmpty()){
+                }else if(c == '}' || c == ')' || c == ']'){
+                    if(pila.isEmpty()){
                         return false;
                     }
                     char ultimo = pila.pop();
-                    if (c == '}' && ultimo != '{' || 
-                        c == ')' && ultimo != '(' ||
-                        c == ']' && ultimo != '['){
+                    if (c == '}' && ultimo != '{'|| 
+                        c == ')' && ultimo != '('||     
+                        c == ']' && ultimo != '[' ){
                             return false;
                         }
-                    
+
                 }
-            
             }
+
             return pila.isEmpty();
 
         }
@@ -179,7 +180,7 @@ public class LogicaClasificacion {
 
         public List<Integer> ordenarPila(Stack<Integer> pila) {
             Stack<Integer> pilaOrdenada = new Stack<>();
-            if(pila.isEmpty()){
+            if (pila.isEmpty()){
                 return new ArrayList<>();
             }
 
@@ -187,10 +188,12 @@ public class LogicaClasificacion {
                 int aux = pila.pop();
                 while(pilaOrdenada.isEmpty() == false && pilaOrdenada.peek() > aux){
                     pila.push(pilaOrdenada.pop());
+
                 }
                 pilaOrdenada.push(aux);
             }
             return pilaOrdenada;
+            
             
         
         }
@@ -208,6 +211,7 @@ public class LogicaClasificacion {
     public List<Integer> clasificarPorParidad(LinkedList<Integer> original) {
         List<Integer> numPares = new LinkedList<>();
         List<Integer> numImpares = new LinkedList<>();
+
         if (original.isEmpty()){
             return new ArrayList<>();
         }
@@ -215,17 +219,62 @@ public class LogicaClasificacion {
         while(original.isEmpty() == false){
             if (original.peek() % 2 == 0){
                 numPares.add(original.pop());
-            }else {
+            } else {
                 numImpares.add(original.pop());
             }
-
-            
-            
         }
         List<Integer> res = new LinkedList<>(numPares);
-            res.addAll(numImpares);
-            return res;
+        res.addAll(numImpares);
+        return res;
+    
     }
+
+
+    public Stack<Integer> eliminarDuplicados(Stack<Integer> pila) {
+            Stack<Integer> duplicados = new Stack<>();
+            Set<Integer> vistos = new HashSet<>();
+
+            if(pila.isEmpty()){
+                return new Stack<>();
+            }
+
+            while(pila.isEmpty() == false){
+                int aux = pila.pop();
+                if (vistos.contains(aux) == false){
+                    vistos.add(aux);
+                    duplicados.push(aux);
+
+                }
+            }
+
+            Stack<Integer> res = new Stack<>();
+            while(duplicados.isEmpty() == false){
+                res.push(duplicados.pop());
+            }
+            return res;
+
+
+        }
+
+
+        public Queue<Integer> invertirCola(Queue<Integer> cola) {
+            Stack<Integer> pila = new Stack<>();
+            Queue<Integer> colaInvertida = new LinkedList<>();
+            if(cola.isEmpty()){
+                return new LinkedList<>();
+            } 
+            while(cola.isEmpty() == false){
+                pila.push(cola.poll());
+            }
+            
+            while(pila.isEmpty() == false){
+                colaInvertida.add(pila.pop());
+            }
+            return colaInvertida; 
+
+
+        }
+    
 
     
 }

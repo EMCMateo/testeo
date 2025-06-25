@@ -2,6 +2,7 @@ package main;
 
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 import utils.StudentValidator;
@@ -43,5 +44,24 @@ public class App {
         // Probar clasificarPorParidad
         LinkedList<Integer> original = new LinkedList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
         System.out.println("clasificarPorParidad([1, 2, 3, 4, 5, 6]): " + logica.clasificarPorParidad(original));
+    
+        Stack<Integer> pilaNuevo = new Stack<>();
+        pilaNuevo.push(3);
+        pilaNuevo.push(3);
+        pilaNuevo.push(4);
+        pilaNuevo.push(2);
+        pilaNuevo.push(2);
+        pilaNuevo.push(1);
+        pilaNuevo.push(4);
+        pilaNuevo.push(8);
+        System.out.println("ordenarPila([3,3,4,2,2,1,4,8]): " + logica.eliminarDuplicados(pilaNuevo));
+
+       Queue<Integer> cola = new LinkedList<>();
+        cola.add(1);
+        cola.add(2);
+        cola.add(3);
+        System.out.println("invertirCola([1, 2, 3]): " + logica.invertirCola(cola));
+
+        
     }
 }
